@@ -46,7 +46,11 @@ namespace ConfigComparison.Entities
 
         [StringLength(255)]
         public string StatusInSite { get; set; }
+     
+        public string FileInSite { get; set; }
 
         public bool IsVerified { get; set; }
+
+        public bool HasMultipleFileInSite { get; set; }
     }
 }

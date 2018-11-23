@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCompareCM = new System.Windows.Forms.Button();
+            this.btnLoadCM = new System.Windows.Forms.Button();
             this.lblSiteConfigPath = new System.Windows.Forms.Label();
             this.txtSitePath = new System.Windows.Forms.TextBox();
             this.dgSiteConfig = new System.Windows.Forms.DataGridView();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabStandard = new System.Windows.Forms.TabPage();
+            this.btnLoadFileInSite = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.checkBoxHighVerified = new System.Windows.Forms.CheckBox();
             this.ColumnProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnConfigFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,22 +51,24 @@
             this.IsVerified = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnFileInSite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgSiteConfig)).BeginInit();
+            this.tabControl.SuspendLayout();
+            this.tabStandard.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnCompareCM
+            // btnLoadCM
             // 
-            this.btnCompareCM.Location = new System.Drawing.Point(12, 52);
-            this.btnCompareCM.Name = "btnCompareCM";
-            this.btnCompareCM.Size = new System.Drawing.Size(96, 23);
-            this.btnCompareCM.TabIndex = 0;
-            this.btnCompareCM.Text = "Compare CM";
-            this.btnCompareCM.UseVisualStyleBackColor = true;
-            this.btnCompareCM.Click += new System.EventHandler(this.btnCompareCM_Click);
+            this.btnLoadCM.Location = new System.Drawing.Point(15, 48);
+            this.btnLoadCM.Name = "btnLoadCM";
+            this.btnLoadCM.Size = new System.Drawing.Size(96, 23);
+            this.btnLoadCM.TabIndex = 0;
+            this.btnLoadCM.Text = "Load CM";
+            this.btnLoadCM.UseVisualStyleBackColor = true;
+            this.btnLoadCM.Click += new System.EventHandler(this.btnLoadCM_Click);
             // 
             // lblSiteConfigPath
             // 
             this.lblSiteConfigPath.AutoSize = true;
-            this.lblSiteConfigPath.Location = new System.Drawing.Point(13, 15);
+            this.lblSiteConfigPath.Location = new System.Drawing.Point(12, 8);
             this.lblSiteConfigPath.Name = "lblSiteConfigPath";
             this.lblSiteConfigPath.Size = new System.Drawing.Size(83, 13);
             this.lblSiteConfigPath.TabIndex = 1;
@@ -69,7 +76,7 @@
             // 
             // txtSitePath
             // 
-            this.txtSitePath.Location = new System.Drawing.Point(102, 12);
+            this.txtSitePath.Location = new System.Drawing.Point(101, 5);
             this.txtSitePath.Name = "txtSitePath";
             this.txtSitePath.Size = new System.Drawing.Size(611, 20);
             this.txtSitePath.TabIndex = 2;
@@ -95,10 +102,67 @@
             this.ColumnStatusInSite,
             this.IsVerified,
             this.ColumnFileInSite});
-            this.dgSiteConfig.Location = new System.Drawing.Point(12, 91);
+            this.dgSiteConfig.Location = new System.Drawing.Point(15, 77);
             this.dgSiteConfig.Name = "dgSiteConfig";
-            this.dgSiteConfig.Size = new System.Drawing.Size(1153, 347);
+            this.dgSiteConfig.Size = new System.Drawing.Size(2071, 680);
             this.dgSiteConfig.TabIndex = 3;
+            // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.tabStandard);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1177, 450);
+            this.tabControl.TabIndex = 4;
+            // 
+            // tabStandard
+            // 
+            this.tabStandard.Controls.Add(this.btnLoadFileInSite);
+            this.tabStandard.Controls.Add(this.btnSave);
+            this.tabStandard.Controls.Add(this.checkBoxHighVerified);
+            this.tabStandard.Controls.Add(this.dgSiteConfig);
+            this.tabStandard.Controls.Add(this.txtSitePath);
+            this.tabStandard.Controls.Add(this.btnLoadCM);
+            this.tabStandard.Controls.Add(this.lblSiteConfigPath);
+            this.tabStandard.Location = new System.Drawing.Point(4, 22);
+            this.tabStandard.Name = "tabStandard";
+            this.tabStandard.Padding = new System.Windows.Forms.Padding(3);
+            this.tabStandard.Size = new System.Drawing.Size(1169, 424);
+            this.tabStandard.TabIndex = 0;
+            this.tabStandard.Text = "Standard";
+            this.tabStandard.UseVisualStyleBackColor = true;
+            this.tabStandard.Click += new System.EventHandler(this.tabStandard_Click);
+            // 
+            // btnLoadFileInSite
+            // 
+            this.btnLoadFileInSite.Location = new System.Drawing.Point(883, 5);
+            this.btnLoadFileInSite.Name = "btnLoadFileInSite";
+            this.btnLoadFileInSite.Size = new System.Drawing.Size(110, 23);
+            this.btnLoadFileInSite.TabIndex = 6;
+            this.btnLoadFileInSite.Text = "Load File In Site";
+            this.btnLoadFileInSite.UseVisualStyleBackColor = true;
+            this.btnLoadFileInSite.Click += new System.EventHandler(this.btnLoadFileInSite_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(1021, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(88, 23);
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Text = "Save Changes";
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxHighVerified
+            // 
+            this.checkBoxHighVerified.AutoSize = true;
+            this.checkBoxHighVerified.Location = new System.Drawing.Point(756, 6);
+            this.checkBoxHighVerified.Name = "checkBoxHighVerified";
+            this.checkBoxHighVerified.Size = new System.Drawing.Size(86, 17);
+            this.checkBoxHighVerified.TabIndex = 4;
+            this.checkBoxHighVerified.Text = "Hide Verified";
+            this.checkBoxHighVerified.UseVisualStyleBackColor = true;
             // 
             // ColumnProductName
             // 
@@ -133,6 +197,7 @@
             this.ColumnSearchProviderUsed.DataPropertyName = "SearchProviderUsed";
             this.ColumnSearchProviderUsed.HeaderText = "Search Provider";
             this.ColumnSearchProviderUsed.Name = "ColumnSearchProviderUsed";
+            this.ColumnSearchProviderUsed.Width = 120;
             // 
             // ColumnContentDelivery
             // 
@@ -195,24 +260,28 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1177, 450);
-            this.Controls.Add(this.dgSiteConfig);
-            this.Controls.Add(this.txtSitePath);
-            this.Controls.Add(this.lblSiteConfigPath);
-            this.Controls.Add(this.btnCompareCM);
+            this.Controls.Add(this.tabControl);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Sitecore Configuration";
             ((System.ComponentModel.ISupportInitialize)(this.dgSiteConfig)).EndInit();
+            this.tabControl.ResumeLayout(false);
+            this.tabStandard.ResumeLayout(false);
+            this.tabStandard.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnCompareCM;
+        private System.Windows.Forms.Button btnLoadCM;
         private System.Windows.Forms.Label lblSiteConfigPath;
         private System.Windows.Forms.TextBox txtSitePath;
         private System.Windows.Forms.DataGridView dgSiteConfig;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabStandard;
+        private System.Windows.Forms.CheckBox checkBoxHighVerified;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnLoadFileInSite;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFilePath;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnConfigFileName;

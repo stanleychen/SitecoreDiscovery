@@ -58,6 +58,7 @@
     <Compile Include="Entities\ConfigData.cs" />
     <Compile Include="Entities\SiteConfigs.cs" />
     <Compile Include="Entities\Standard826_827.cs" />
+    <Compile Include="FileExtension.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -20,7 +20,7 @@ namespace ConfigComparison
             InitializeComponent();
         }
 
-        private void btnCompareCM_Click(object sender, EventArgs e)
+        private void btnLoadCM_Click(object sender, EventArgs e)
         {
             this.ColumnContentManagement.Visible = true;
 
@@ -49,6 +49,7 @@ namespace ConfigComparison
                         site.Reporting = s.Reporting;
                         site.SearchProviderUsed = s.SearchProviderUsed;
                         site.Type = s.Type;
+                        site.SiteFolder = this.txtSitePath.Text;
 
                         list.Add(site);
                     }
@@ -62,12 +63,7 @@ namespace ConfigComparison
          
                 foreach (var config in list)
                 {
-                    var fileName = string.Format("{0}{1}",siteFolder, config.FilePath);
-
-                    if (fileName.EndsWith(@"\"))
-                        fileName = fileName + config.ConfigFileName;
-                    else
-                        fileName = fileName + @"\" + config.ConfigFileName;
+                    string fileName = GetConfigFileFullName(config, siteFolder);
 
                     if (!File.Exists(fileName))
                     {
@@ -89,7 +85,64 @@ namespace ConfigComparison
             }
         }
 
+        private void btnLoadFileInSite_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
 
-    
+            var siteFolder = this.txtSitePath.Text;
+            if (string.IsNullOrEmpty(siteFolder))
+                return;
+
+            using (var entities = new Entities.ConfigData())
+            {
+                var allFilesInSite = FileExtension.GetFiles(siteFolder + @"\website\App_Config\");
+
+                var list = entities.SiteConfigs.Where(s => s.SiteFolder == siteFolder).ToList();
+                foreach(var s in list)
+                {
+                    string fileName = GetConfigFileFullName(s, siteFolder);
+
+                    string fileToSearch = fileName.RemoveFileExtension();
+
+                    var fileList = allFilesInSite.Where(f => f.StartsWith(fileToSearch, StringComparison.InvariantCultureIgnoreCase)).ToList();
+
+                    if (fileList.Count() > 1)
+                    {
+                        s.HasMultipleFileInSite = true;
+                    }
+                    s.FileInSite = string.Join(", ", fileList);
+                }
+
+                entities.SaveChanges();
+            }
+
+            this.Cursor = Cursors.Default;
+
+            MessageBox.Show("Done");
+        }
+
+        private void tabStandard_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        #region Helper Method 
+
+        private string GetConfigFileFullName(SiteConfigs config, string siteFolder)
+        {
+            var fileName = string.Format("{0}{1}", siteFolder, config.FilePath);
+
+            if (fileName.EndsWith(@"\"))
+                fileName = fileName + config.ConfigFileName;
+            else
+                fileName = fileName + @"\" + config.ConfigFileName;
+
+            return fileName;
+
+        }
+
+        #endregion
+
     }
 }
