@@ -13,6 +13,7 @@ using ClosedXML.Excel;
 
 using CsvHelper.Excel;
 using CsvHelper;
+using ConfigComparison.ViewModel;
 
 namespace ConfigComparison
 {
@@ -252,6 +253,21 @@ namespace ConfigComparison
 
             if(saveFileDialog.ShowDialog() == DialogResult.OK)
             {
+                var cmList = new List<CMConfig>();
+
+                foreach (var s in list)
+                {
+                    cmList.Add(new CMConfig()
+                    {
+                        ProductName = s.ProductName,
+                        ContentManagement = s.ContentManagement,
+                        ConfigFileName = s.ConfigFileName,
+                        FileInSite = s.FileInSite,
+                        FilePath = s.FilePath,
+                        SiteFolder = s.SiteFolder
+                    });
+                }
+
                 string fileName = saveFileDialog.FileName;
 
                 using (var workbook = new XLWorkbook(XLEventTracking.Disabled))
