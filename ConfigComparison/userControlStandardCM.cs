@@ -17,6 +17,8 @@ namespace ConfigComparison
         public userControlStandardCM()
         {
             InitializeComponent();
+
+            
         }
 
         private void btnInitCM_Click(object sender, EventArgs e)
@@ -35,9 +37,23 @@ namespace ConfigComparison
 
                     foreach (var s in standards)
                     {
+                        string productName = s.ProductName;
+                        string filePath = s.FilePath;
+
+                        if (filePath.EndsWith("(Update 6)"))
+                        {
+                            s.ProductName = productName + " for Update 6";
+                            filePath = filePath.Substring(0, filePath.LastIndexOf("(Update 6)"));
+                        }
+                        else if (s.FilePath.EndsWith("(Update 7)"))
+                        {
+                            s.ProductName = productName + " for Update 7";
+                            filePath = filePath.Substring(0, filePath.LastIndexOf("(Update 7)"));
+                        }
+
                         SiteConfigs site = new SiteConfigs();
                         site.ProductName = s.ProductName;
-                        site.FilePath = s.FilePath;
+                        site.FilePath = filePath;
                         site.CM_And_Processing = s.CM_And_Processing;
 
                         var configFileName = s.ConfigFileName;
@@ -187,7 +203,26 @@ namespace ConfigComparison
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var list = this.dgSiteConfig.DataSource;
+            var list = this.dgSiteConfig.DataSource as List<SiteConfigs>;
+
+            if (list == null)
+                return;
+
+            using (var context = new ConfigData())
+            {
+                foreach (var row in list)
+                {
+                    var config = context.SiteConfigs.Where(s => s.ID == row.ID).FirstOrDefault();
+
+                    if (config != null)
+                        config.IsVerified = row.IsVerified;
+
+                }
+
+                context.SaveChanges();
+            }
+
+            this.LoadCMGrid();
         }
 
         private void btnLoadCM_Click(object sender, EventArgs e)

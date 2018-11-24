@@ -32,6 +32,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgSiteConfig = new System.Windows.Forms.DataGridView();
+            this.btnInitCM = new System.Windows.Forms.Button();
+            this.btnUpdateFileInSite = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.checkBoxHideVerified = new System.Windows.Forms.CheckBox();
+            this.txtSitePath = new System.Windows.Forms.TextBox();
+            this.btnLoadCM = new System.Windows.Forms.Button();
+            this.lblSiteConfigPath = new System.Windows.Forms.Label();
+            this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnConfigFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,13 +54,6 @@
             this.IsVerified = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnFileInSite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnHasMultipleFileInSite = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnInitCM = new System.Windows.Forms.Button();
-            this.btnUpdateFileInSite = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.checkBoxHideVerified = new System.Windows.Forms.CheckBox();
-            this.txtSitePath = new System.Windows.Forms.TextBox();
-            this.btnLoadCM = new System.Windows.Forms.Button();
-            this.lblSiteConfigPath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgSiteConfig)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +72,7 @@
             this.dgSiteConfig.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgSiteConfig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgSiteConfig.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnID,
             this.ColumnProductName,
             this.ColumnFilePath,
             this.ColumnConfigFileName,
@@ -105,6 +107,80 @@
             this.dgSiteConfig.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgSiteConfig.Size = new System.Drawing.Size(1334, 521);
             this.dgSiteConfig.TabIndex = 4;
+            // 
+            // btnInitCM
+            // 
+            this.btnInitCM.Location = new System.Drawing.Point(634, 10);
+            this.btnInitCM.Name = "btnInitCM";
+            this.btnInitCM.Size = new System.Drawing.Size(91, 23);
+            this.btnInitCM.TabIndex = 14;
+            this.btnInitCM.Text = "Init CM";
+            this.btnInitCM.UseVisualStyleBackColor = true;
+            this.btnInitCM.Click += new System.EventHandler(this.btnInitCM_Click);
+            // 
+            // btnUpdateFileInSite
+            // 
+            this.btnUpdateFileInSite.Location = new System.Drawing.Point(748, 10);
+            this.btnUpdateFileInSite.Name = "btnUpdateFileInSite";
+            this.btnUpdateFileInSite.Size = new System.Drawing.Size(110, 23);
+            this.btnUpdateFileInSite.TabIndex = 13;
+            this.btnUpdateFileInSite.Text = "Update File In Site";
+            this.btnUpdateFileInSite.UseVisualStyleBackColor = true;
+            this.btnUpdateFileInSite.Click += new System.EventHandler(this.btnUpdateFileInSite_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(879, 9);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(88, 23);
+            this.btnSave.TabIndex = 12;
+            this.btnSave.Text = "Save Changes";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // checkBoxHideVerified
+            // 
+            this.checkBoxHideVerified.AutoSize = true;
+            this.checkBoxHideVerified.Location = new System.Drawing.Point(144, 61);
+            this.checkBoxHideVerified.Name = "checkBoxHideVerified";
+            this.checkBoxHideVerified.Size = new System.Drawing.Size(86, 17);
+            this.checkBoxHideVerified.TabIndex = 11;
+            this.checkBoxHideVerified.Text = "Hide Verified";
+            this.checkBoxHideVerified.UseVisualStyleBackColor = true;
+            this.checkBoxHideVerified.CheckedChanged += new System.EventHandler(this.checkBoxHideVerified_CheckedChanged);
+            // 
+            // txtSitePath
+            // 
+            this.txtSitePath.Location = new System.Drawing.Point(98, 12);
+            this.txtSitePath.Name = "txtSitePath";
+            this.txtSitePath.Size = new System.Drawing.Size(402, 20);
+            this.txtSitePath.TabIndex = 10;
+            this.txtSitePath.Text = "D:\\ForestersSiteConfigs\\CMUAT";
+            // 
+            // btnLoadCM
+            // 
+            this.btnLoadCM.Location = new System.Drawing.Point(12, 55);
+            this.btnLoadCM.Name = "btnLoadCM";
+            this.btnLoadCM.Size = new System.Drawing.Size(96, 23);
+            this.btnLoadCM.TabIndex = 8;
+            this.btnLoadCM.Text = "Load CM";
+            this.btnLoadCM.UseVisualStyleBackColor = true;
+            this.btnLoadCM.Click += new System.EventHandler(this.btnLoadCM_Click);
+            // 
+            // lblSiteConfigPath
+            // 
+            this.lblSiteConfigPath.AutoSize = true;
+            this.lblSiteConfigPath.Location = new System.Drawing.Point(9, 15);
+            this.lblSiteConfigPath.Name = "lblSiteConfigPath";
+            this.lblSiteConfigPath.Size = new System.Drawing.Size(83, 13);
+            this.lblSiteConfigPath.TabIndex = 9;
+            this.lblSiteConfigPath.Text = "Site Config Path";
+            // 
+            // ColumnID
+            // 
+            this.ColumnID.HeaderText = "ID";
+            this.ColumnID.Name = "ColumnID";
+            this.ColumnID.Visible = false;
             // 
             // ColumnProductName
             // 
@@ -198,83 +274,16 @@
             this.ColumnFileInSite.DataPropertyName = "FileInSite";
             this.ColumnFileInSite.HeaderText = "FileInSite";
             this.ColumnFileInSite.Name = "ColumnFileInSite";
-            this.ColumnFileInSite.Width = 500;
+            this.ColumnFileInSite.Width = 600;
             // 
             // ColumnHasMultipleFileInSite
             // 
             this.ColumnHasMultipleFileInSite.DataPropertyName = "HasMultipleFileInSite";
-            this.ColumnHasMultipleFileInSite.HeaderText = "Multi File";
+            this.ColumnHasMultipleFileInSite.HeaderText = "MultiFile";
             this.ColumnHasMultipleFileInSite.Name = "ColumnHasMultipleFileInSite";
             this.ColumnHasMultipleFileInSite.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnHasMultipleFileInSite.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // btnInitCM
-            // 
-            this.btnInitCM.Location = new System.Drawing.Point(634, 10);
-            this.btnInitCM.Name = "btnInitCM";
-            this.btnInitCM.Size = new System.Drawing.Size(91, 23);
-            this.btnInitCM.TabIndex = 14;
-            this.btnInitCM.Text = "Init CM";
-            this.btnInitCM.UseVisualStyleBackColor = true;
-            this.btnInitCM.Click += new System.EventHandler(this.btnInitCM_Click);
-            // 
-            // btnUpdateFileInSite
-            // 
-            this.btnUpdateFileInSite.Location = new System.Drawing.Point(748, 10);
-            this.btnUpdateFileInSite.Name = "btnUpdateFileInSite";
-            this.btnUpdateFileInSite.Size = new System.Drawing.Size(110, 23);
-            this.btnUpdateFileInSite.TabIndex = 13;
-            this.btnUpdateFileInSite.Text = "Update File In Site";
-            this.btnUpdateFileInSite.UseVisualStyleBackColor = true;
-            this.btnUpdateFileInSite.Click += new System.EventHandler(this.btnUpdateFileInSite_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(879, 9);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(88, 23);
-            this.btnSave.TabIndex = 12;
-            this.btnSave.Text = "Save Changes";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // checkBoxHideVerified
-            // 
-            this.checkBoxHideVerified.AutoSize = true;
-            this.checkBoxHideVerified.Location = new System.Drawing.Point(144, 61);
-            this.checkBoxHideVerified.Name = "checkBoxHideVerified";
-            this.checkBoxHideVerified.Size = new System.Drawing.Size(86, 17);
-            this.checkBoxHideVerified.TabIndex = 11;
-            this.checkBoxHideVerified.Text = "Hide Verified";
-            this.checkBoxHideVerified.UseVisualStyleBackColor = true;
-            this.checkBoxHideVerified.CheckedChanged += new System.EventHandler(this.checkBoxHideVerified_CheckedChanged);
-            // 
-            // txtSitePath
-            // 
-            this.txtSitePath.Location = new System.Drawing.Point(98, 12);
-            this.txtSitePath.Name = "txtSitePath";
-            this.txtSitePath.Size = new System.Drawing.Size(402, 20);
-            this.txtSitePath.TabIndex = 10;
-            this.txtSitePath.Text = "D:\\ForestersSiteConfigs\\CMUAT";
-            // 
-            // btnLoadCM
-            // 
-            this.btnLoadCM.Location = new System.Drawing.Point(12, 55);
-            this.btnLoadCM.Name = "btnLoadCM";
-            this.btnLoadCM.Size = new System.Drawing.Size(96, 23);
-            this.btnLoadCM.TabIndex = 8;
-            this.btnLoadCM.Text = "Load CM";
-            this.btnLoadCM.UseVisualStyleBackColor = true;
-            this.btnLoadCM.Click += new System.EventHandler(this.btnLoadCM_Click);
-            // 
-            // lblSiteConfigPath
-            // 
-            this.lblSiteConfigPath.AutoSize = true;
-            this.lblSiteConfigPath.Location = new System.Drawing.Point(9, 15);
-            this.lblSiteConfigPath.Name = "lblSiteConfigPath";
-            this.lblSiteConfigPath.Size = new System.Drawing.Size(83, 13);
-            this.lblSiteConfigPath.TabIndex = 9;
-            this.lblSiteConfigPath.Text = "Site Config Path";
+            this.ColumnHasMultipleFileInSite.Width = 60;
             // 
             // userControlStandardCM
             // 
@@ -300,6 +309,14 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgSiteConfig;
+        private System.Windows.Forms.Button btnInitCM;
+        private System.Windows.Forms.Button btnUpdateFileInSite;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.CheckBox checkBoxHideVerified;
+        private System.Windows.Forms.TextBox txtSitePath;
+        private System.Windows.Forms.Button btnLoadCM;
+        private System.Windows.Forms.Label lblSiteConfigPath;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFilePath;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnConfigFileName;
@@ -314,12 +331,5 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsVerified;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFileInSite;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnHasMultipleFileInSite;
-        private System.Windows.Forms.Button btnInitCM;
-        private System.Windows.Forms.Button btnUpdateFileInSite;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.CheckBox checkBoxHideVerified;
-        private System.Windows.Forms.TextBox txtSitePath;
-        private System.Windows.Forms.Button btnLoadCM;
-        private System.Windows.Forms.Label lblSiteConfigPath;
     }
 }
