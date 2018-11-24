@@ -207,5 +207,10 @@ namespace ConfigComparison
         {
             this.LoadCMGrid();
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            var list = this.dgSiteConfig.DataSource;
+        }
     }
 }

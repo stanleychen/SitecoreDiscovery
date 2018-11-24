@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnLoadCM = new System.Windows.Forms.Button();
             this.lblSiteConfigPath = new System.Windows.Forms.Label();
             this.txtSitePath = new System.Windows.Forms.TextBox();
@@ -47,14 +50,14 @@
             this.ColumnFileInSite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnHasMultipleFileInSite = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabStandard = new System.Windows.Forms.TabPage();
+            this.tabStandardCM = new System.Windows.Forms.TabPage();
             this.btnInitCM = new System.Windows.Forms.Button();
             this.btnUpdateFileInSite = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.checkBoxHideVerified = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgSiteConfig)).BeginInit();
             this.tabControl.SuspendLayout();
-            this.tabStandard.SuspendLayout();
+            this.tabStandardCM.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLoadCM
@@ -89,6 +92,14 @@
             this.dgSiteConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgSiteConfig.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgSiteConfig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgSiteConfig.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnProductName,
@@ -105,8 +116,24 @@
             this.IsVerified,
             this.ColumnFileInSite,
             this.ColumnHasMultipleFileInSite});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgSiteConfig.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgSiteConfig.Location = new System.Drawing.Point(15, 77);
             this.dgSiteConfig.Name = "dgSiteConfig";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgSiteConfig.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgSiteConfig.Size = new System.Drawing.Size(1146, 339);
             this.dgSiteConfig.TabIndex = 3;
             // 
@@ -214,7 +241,7 @@
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.tabStandard);
+            this.tabControl.Controls.Add(this.tabStandardCM);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
@@ -222,24 +249,24 @@
             this.tabControl.Size = new System.Drawing.Size(1177, 450);
             this.tabControl.TabIndex = 4;
             // 
-            // tabStandard
+            // tabStandardCM
             // 
-            this.tabStandard.Controls.Add(this.btnInitCM);
-            this.tabStandard.Controls.Add(this.btnUpdateFileInSite);
-            this.tabStandard.Controls.Add(this.btnSave);
-            this.tabStandard.Controls.Add(this.checkBoxHideVerified);
-            this.tabStandard.Controls.Add(this.dgSiteConfig);
-            this.tabStandard.Controls.Add(this.txtSitePath);
-            this.tabStandard.Controls.Add(this.btnLoadCM);
-            this.tabStandard.Controls.Add(this.lblSiteConfigPath);
-            this.tabStandard.Location = new System.Drawing.Point(4, 22);
-            this.tabStandard.Name = "tabStandard";
-            this.tabStandard.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStandard.Size = new System.Drawing.Size(1169, 424);
-            this.tabStandard.TabIndex = 0;
-            this.tabStandard.Text = "Standard";
-            this.tabStandard.UseVisualStyleBackColor = true;
-            this.tabStandard.Click += new System.EventHandler(this.tabStandard_Click);
+            this.tabStandardCM.Controls.Add(this.btnInitCM);
+            this.tabStandardCM.Controls.Add(this.btnUpdateFileInSite);
+            this.tabStandardCM.Controls.Add(this.btnSave);
+            this.tabStandardCM.Controls.Add(this.checkBoxHideVerified);
+            this.tabStandardCM.Controls.Add(this.dgSiteConfig);
+            this.tabStandardCM.Controls.Add(this.txtSitePath);
+            this.tabStandardCM.Controls.Add(this.btnLoadCM);
+            this.tabStandardCM.Controls.Add(this.lblSiteConfigPath);
+            this.tabStandardCM.Location = new System.Drawing.Point(4, 22);
+            this.tabStandardCM.Name = "tabStandardCM";
+            this.tabStandardCM.Padding = new System.Windows.Forms.Padding(3);
+            this.tabStandardCM.Size = new System.Drawing.Size(1169, 424);
+            this.tabStandardCM.TabIndex = 0;
+            this.tabStandardCM.Text = "Standard CM";
+            this.tabStandardCM.UseVisualStyleBackColor = true;
+            this.tabStandardCM.Click += new System.EventHandler(this.tabStandard_Click);
             // 
             // btnInitCM
             // 
@@ -269,12 +296,13 @@
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save Changes";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // checkBoxHighVerified
+            // checkBoxHideVerified
             // 
             this.checkBoxHideVerified.AutoSize = true;
             this.checkBoxHideVerified.Location = new System.Drawing.Point(147, 54);
-            this.checkBoxHideVerified.Name = "checkBoxHighVerified";
+            this.checkBoxHideVerified.Name = "checkBoxHideVerified";
             this.checkBoxHideVerified.Size = new System.Drawing.Size(86, 17);
             this.checkBoxHideVerified.TabIndex = 4;
             this.checkBoxHideVerified.Text = "Hide Verified";
@@ -292,8 +320,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgSiteConfig)).EndInit();
             this.tabControl.ResumeLayout(false);
-            this.tabStandard.ResumeLayout(false);
-            this.tabStandard.PerformLayout();
+            this.tabStandardCM.ResumeLayout(false);
+            this.tabStandardCM.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -305,7 +333,7 @@
         private System.Windows.Forms.TextBox txtSitePath;
         private System.Windows.Forms.DataGridView dgSiteConfig;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabStandard;
+        private System.Windows.Forms.TabPage tabStandardCM;
         private System.Windows.Forms.CheckBox checkBoxHideVerified;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnUpdateFileInSite;
