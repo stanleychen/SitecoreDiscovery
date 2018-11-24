@@ -32,11 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClosedXML, Version=0.93.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ClosedXML.0.93.1\lib\net46\ClosedXML.dll</HintPath>
+    <Reference Include="ClosedXML, Version=0.87.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>packages\ClosedXML.0.87.1\lib\net40\ClosedXML.dll</HintPath>
     </Reference>
-    <Reference Include="CsvHelper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
-      <HintPath>packages\CsvHelper.9.2.3\lib\net45\CsvHelper.dll</HintPath>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>packages\CsvHelper.2.16.3.0\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="CsvHelper.Excel, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\CsvHelper.Excel.1.0.6\lib\net40\CsvHelper.Excel.dll</HintPath>
@@ -98,6 +98,7 @@
     <Compile Include="userControlStandardCM.Designer.cs">
       <DependentUpon>userControlStandardCM.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\CMConfig.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConfigComparison.Entities;
 using System.IO;
+using ClosedXML.Excel;
+
+using CsvHelper.Excel;
+using CsvHelper;
 
 namespace ConfigComparison
 {
@@ -238,6 +242,31 @@ namespace ConfigComparison
         private void userControlStandardCM_Load(object sender, EventArgs e)
         {
             this.dgSiteConfig.AutoGenerateColumns = false;
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            var list = this.dgSiteConfig.DataSource as List<SiteConfigs>;
+            if (list == null)
+                return;
+
+            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = saveFileDialog.FileName;
+
+                using (var workbook = new XLWorkbook(XLEventTracking.Disabled))
+                {
+                    // do stuff with the workbook
+                    workbook.AddWorksheet("SiteConfig");
+                    using (var writer = new CsvWriter(new ExcelSerializer(workbook)))
+                    {
+                        writer.WriteRecords(list);
+                    }
+                    // do other stuff with workbook
+                    workbook.SaveAs(fileName);
+                }
+
+            }
         }
     }
 }
