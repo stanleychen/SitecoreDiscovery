@@ -40,8 +40,5 @@ namespace ConfigComparison.Entities
         [StringLength(255)]
         public string Reporting { get; set; }
 
-        [StringLength(255)]
-        public string StatusInSite { get; set; }
-
     }
 }

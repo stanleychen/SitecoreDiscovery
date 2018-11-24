@@ -32,11 +32,6 @@
             this.lblSiteConfigPath = new System.Windows.Forms.Label();
             this.txtSitePath = new System.Windows.Forms.TextBox();
             this.dgSiteConfig = new System.Windows.Forms.DataGridView();
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabStandard = new System.Windows.Forms.TabPage();
-            this.btnLoadFileInSite = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.checkBoxHighVerified = new System.Windows.Forms.CheckBox();
             this.ColumnProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnConfigFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,9 +42,16 @@
             this.ColumnProcessing = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCM_And_Processing = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnReporting = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnStatusInSite = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDifferentWithSite = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IsVerified = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnFileInSite = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnHasMultipleFileInSite = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabStandard = new System.Windows.Forms.TabPage();
+            this.btnInitCM = new System.Windows.Forms.Button();
+            this.btnUpdateFileInSite = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.checkBoxHideVerified = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgSiteConfig)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabStandard.SuspendLayout();
@@ -78,9 +80,9 @@
             // 
             this.txtSitePath.Location = new System.Drawing.Point(101, 5);
             this.txtSitePath.Name = "txtSitePath";
-            this.txtSitePath.Size = new System.Drawing.Size(611, 20);
+            this.txtSitePath.Size = new System.Drawing.Size(402, 20);
             this.txtSitePath.TabIndex = 2;
-            this.txtSitePath.Text = "D:\\inetpub\\wwwroot\\cmuat2.foresters";
+            this.txtSitePath.Text = "D:\\ForestersSiteConfigs\\CMUAT";
             // 
             // dgSiteConfig
             // 
@@ -99,70 +101,14 @@
             this.ColumnProcessing,
             this.ColumnCM_And_Processing,
             this.ColumnReporting,
-            this.ColumnStatusInSite,
+            this.ColumnDifferentWithSite,
             this.IsVerified,
-            this.ColumnFileInSite});
+            this.ColumnFileInSite,
+            this.ColumnHasMultipleFileInSite});
             this.dgSiteConfig.Location = new System.Drawing.Point(15, 77);
             this.dgSiteConfig.Name = "dgSiteConfig";
-            this.dgSiteConfig.Size = new System.Drawing.Size(2071, 680);
+            this.dgSiteConfig.Size = new System.Drawing.Size(1146, 339);
             this.dgSiteConfig.TabIndex = 3;
-            // 
-            // tabControl
-            // 
-            this.tabControl.Controls.Add(this.tabStandard);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 0);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1177, 450);
-            this.tabControl.TabIndex = 4;
-            // 
-            // tabStandard
-            // 
-            this.tabStandard.Controls.Add(this.btnLoadFileInSite);
-            this.tabStandard.Controls.Add(this.btnSave);
-            this.tabStandard.Controls.Add(this.checkBoxHighVerified);
-            this.tabStandard.Controls.Add(this.dgSiteConfig);
-            this.tabStandard.Controls.Add(this.txtSitePath);
-            this.tabStandard.Controls.Add(this.btnLoadCM);
-            this.tabStandard.Controls.Add(this.lblSiteConfigPath);
-            this.tabStandard.Location = new System.Drawing.Point(4, 22);
-            this.tabStandard.Name = "tabStandard";
-            this.tabStandard.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStandard.Size = new System.Drawing.Size(1169, 424);
-            this.tabStandard.TabIndex = 0;
-            this.tabStandard.Text = "Standard";
-            this.tabStandard.UseVisualStyleBackColor = true;
-            this.tabStandard.Click += new System.EventHandler(this.tabStandard_Click);
-            // 
-            // btnLoadFileInSite
-            // 
-            this.btnLoadFileInSite.Location = new System.Drawing.Point(883, 5);
-            this.btnLoadFileInSite.Name = "btnLoadFileInSite";
-            this.btnLoadFileInSite.Size = new System.Drawing.Size(110, 23);
-            this.btnLoadFileInSite.TabIndex = 6;
-            this.btnLoadFileInSite.Text = "Load File In Site";
-            this.btnLoadFileInSite.UseVisualStyleBackColor = true;
-            this.btnLoadFileInSite.Click += new System.EventHandler(this.btnLoadFileInSite_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(1021, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(88, 23);
-            this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "Save Changes";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxHighVerified
-            // 
-            this.checkBoxHighVerified.AutoSize = true;
-            this.checkBoxHighVerified.Location = new System.Drawing.Point(756, 6);
-            this.checkBoxHighVerified.Name = "checkBoxHighVerified";
-            this.checkBoxHighVerified.Size = new System.Drawing.Size(86, 17);
-            this.checkBoxHighVerified.TabIndex = 4;
-            this.checkBoxHighVerified.Text = "Hide Verified";
-            this.checkBoxHighVerified.UseVisualStyleBackColor = true;
             // 
             // ColumnProductName
             // 
@@ -235,12 +181,14 @@
             this.ColumnReporting.Name = "ColumnReporting";
             this.ColumnReporting.Visible = false;
             // 
-            // ColumnStatusInSite
+            // ColumnDifferentWithSite
             // 
-            this.ColumnStatusInSite.DataPropertyName = "StatusInSite";
-            this.ColumnStatusInSite.HeaderText = "Status In Site";
-            this.ColumnStatusInSite.Name = "ColumnStatusInSite";
-            this.ColumnStatusInSite.Width = 60;
+            this.ColumnDifferentWithSite.DataPropertyName = "DifferentWithSite";
+            this.ColumnDifferentWithSite.HeaderText = "Different";
+            this.ColumnDifferentWithSite.Name = "ColumnDifferentWithSite";
+            this.ColumnDifferentWithSite.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnDifferentWithSite.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnDifferentWithSite.Width = 60;
             // 
             // IsVerified
             // 
@@ -251,9 +199,87 @@
             // 
             // ColumnFileInSite
             // 
+            this.ColumnFileInSite.DataPropertyName = "FileInSite";
             this.ColumnFileInSite.HeaderText = "FileInSite";
             this.ColumnFileInSite.Name = "ColumnFileInSite";
             this.ColumnFileInSite.Width = 500;
+            // 
+            // ColumnHasMultipleFileInSite
+            // 
+            this.ColumnHasMultipleFileInSite.DataPropertyName = "HasMultipleFileInSite";
+            this.ColumnHasMultipleFileInSite.HeaderText = "Multi File";
+            this.ColumnHasMultipleFileInSite.Name = "ColumnHasMultipleFileInSite";
+            this.ColumnHasMultipleFileInSite.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnHasMultipleFileInSite.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.tabStandard);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1177, 450);
+            this.tabControl.TabIndex = 4;
+            // 
+            // tabStandard
+            // 
+            this.tabStandard.Controls.Add(this.btnInitCM);
+            this.tabStandard.Controls.Add(this.btnUpdateFileInSite);
+            this.tabStandard.Controls.Add(this.btnSave);
+            this.tabStandard.Controls.Add(this.checkBoxHideVerified);
+            this.tabStandard.Controls.Add(this.dgSiteConfig);
+            this.tabStandard.Controls.Add(this.txtSitePath);
+            this.tabStandard.Controls.Add(this.btnLoadCM);
+            this.tabStandard.Controls.Add(this.lblSiteConfigPath);
+            this.tabStandard.Location = new System.Drawing.Point(4, 22);
+            this.tabStandard.Name = "tabStandard";
+            this.tabStandard.Padding = new System.Windows.Forms.Padding(3);
+            this.tabStandard.Size = new System.Drawing.Size(1169, 424);
+            this.tabStandard.TabIndex = 0;
+            this.tabStandard.Text = "Standard";
+            this.tabStandard.UseVisualStyleBackColor = true;
+            this.tabStandard.Click += new System.EventHandler(this.tabStandard_Click);
+            // 
+            // btnInitCM
+            // 
+            this.btnInitCM.Location = new System.Drawing.Point(776, 5);
+            this.btnInitCM.Name = "btnInitCM";
+            this.btnInitCM.Size = new System.Drawing.Size(91, 23);
+            this.btnInitCM.TabIndex = 7;
+            this.btnInitCM.Text = "Init CM";
+            this.btnInitCM.UseVisualStyleBackColor = true;
+            this.btnInitCM.Click += new System.EventHandler(this.btnInitCM_Click);
+            // 
+            // btnUpdateFileInSite
+            // 
+            this.btnUpdateFileInSite.Location = new System.Drawing.Point(890, 5);
+            this.btnUpdateFileInSite.Name = "btnUpdateFileInSite";
+            this.btnUpdateFileInSite.Size = new System.Drawing.Size(110, 23);
+            this.btnUpdateFileInSite.TabIndex = 6;
+            this.btnUpdateFileInSite.Text = "Update File In Site";
+            this.btnUpdateFileInSite.UseVisualStyleBackColor = true;
+            this.btnUpdateFileInSite.Click += new System.EventHandler(this.btnUpdateFileInSite_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(1021, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(88, 23);
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Text = "Save Changes";
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxHighVerified
+            // 
+            this.checkBoxHideVerified.AutoSize = true;
+            this.checkBoxHideVerified.Location = new System.Drawing.Point(147, 54);
+            this.checkBoxHideVerified.Name = "checkBoxHighVerified";
+            this.checkBoxHideVerified.Size = new System.Drawing.Size(86, 17);
+            this.checkBoxHideVerified.TabIndex = 4;
+            this.checkBoxHideVerified.Text = "Hide Verified";
+            this.checkBoxHideVerified.UseVisualStyleBackColor = true;
+            this.checkBoxHideVerified.CheckedChanged += new System.EventHandler(this.checkBoxHighVerified_CheckedChanged);
             // 
             // Form1
             // 
@@ -263,6 +289,7 @@
             this.Controls.Add(this.tabControl);
             this.Name = "Form1";
             this.Text = "Sitecore Configuration";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgSiteConfig)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.tabStandard.ResumeLayout(false);
@@ -279,9 +306,10 @@
         private System.Windows.Forms.DataGridView dgSiteConfig;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabStandard;
-        private System.Windows.Forms.CheckBox checkBoxHighVerified;
+        private System.Windows.Forms.CheckBox checkBoxHideVerified;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnLoadFileInSite;
+        private System.Windows.Forms.Button btnUpdateFileInSite;
+        private System.Windows.Forms.Button btnInitCM;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFilePath;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnConfigFileName;
@@ -292,9 +320,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessing;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCM_And_Processing;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnReporting;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatusInSite;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnDifferentWithSite;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsVerified;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFileInSite;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnHasMultipleFileInSite;
     }
 }
 
