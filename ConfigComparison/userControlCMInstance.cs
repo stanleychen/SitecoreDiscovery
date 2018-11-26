@@ -70,6 +70,10 @@ namespace ConfigComparison
                                 config.Type = "Extended Config";
                             }
                         }
+                        else
+                        {
+                            config.Type = "Disabled";
+                        }
                       
                         list.Add(config);
                     }
@@ -94,11 +98,10 @@ namespace ConfigComparison
                                     newConfig.Role = Constants.CM_ROLE;
                                     newConfig.SiteFolder = siteFolder;
                                     newConfig.ConfigFileFullName = fileName;
-                                    newConfig.FilePath = fileName.Substring(siteFolder.Length);
-                                    newConfig.ConfigFileName = fileName.Substring(fileName.LastIndexOf(@"\"));
+                                    newConfig.FilePath = fileName.Substring(siteFolder.Length, fileName.LastIndexOf(@"\") + 1 - siteFolder.Length);
+                                    newConfig.ConfigFileName = fileName.Substring(fileName.LastIndexOf(@"\") + 1);
 
-                                    
-                                    var cmConfig = cmConfigs.Where(c => c.FilePath == newConfig.FilePath && c.ConfigFileName == newConfig.ConfigFileName).FirstOrDefault();
+                                    var cmConfig = cmConfigs.Where(c => c.FileInSite.Equals(fileName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
                                     if (cmConfig != null)
                                     {
@@ -116,6 +119,11 @@ namespace ConfigComparison
                                             config.Type = "Custom Config";
                                         }
                                     }
+                                    else
+                                    {
+                                        config.Type = "Disabled";
+                                    }
+
                                     context.SiteInstanceConfigs.Add(newConfig);
                                     context.SaveChanges();
                                 }
@@ -141,6 +149,11 @@ namespace ConfigComparison
             using (var entities = new ConfigData())
             {
                 var data = entities.SiteInstanceConfigs.Where(s=>s.SiteFolder == siteFolder);
+
+                if (this.chkHideDisabled.Checked)
+                {
+                    data = data.Where(d => d.Type != Constants.DISABLED);
+                }
 
                 this.dgSiteConfig.DataSource = data.ToList();
 
@@ -314,6 +327,11 @@ namespace ConfigComparison
                 }
 
             }
+        }
+
+        private void chkHideDisabled_CheckedChanged(object sender, EventArgs e)
+        {
+            this.LoadGrid();
         }
     }
 }

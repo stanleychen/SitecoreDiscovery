@@ -49,6 +49,7 @@
             this.ColumnConfigFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnConfigFileFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkHideDisabled = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgSiteConfig)).BeginInit();
             this.SuspendLayout();
             // 
@@ -234,10 +235,22 @@
             this.ColumnConfigFileFullName.Name = "ColumnConfigFileFullName";
             this.ColumnConfigFileFullName.Width = 500;
             // 
+            // chkHideDisabled
+            // 
+            this.chkHideDisabled.AutoSize = true;
+            this.chkHideDisabled.Location = new System.Drawing.Point(105, 61);
+            this.chkHideDisabled.Name = "chkHideDisabled";
+            this.chkHideDisabled.Size = new System.Drawing.Size(92, 17);
+            this.chkHideDisabled.TabIndex = 16;
+            this.chkHideDisabled.Text = "Hide Disabled";
+            this.chkHideDisabled.UseVisualStyleBackColor = true;
+            this.chkHideDisabled.CheckedChanged += new System.EventHandler(this.chkHideDisabled_CheckedChanged);
+            // 
             // userControlCMInstance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkHideDisabled);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnInitCM);
             this.Controls.Add(this.btnUpdateFileInSite);
@@ -276,5 +289,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnConfigFileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnConfigFileFullName;
+        private System.Windows.Forms.CheckBox chkHideDisabled;
     }
 }

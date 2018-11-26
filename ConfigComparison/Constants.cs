@@ -9,5 +9,7 @@ namespace ConfigComparison
     public class Constants
     {
         public const string CM_ROLE = "CM";
+
+        public const string DISABLED = "Disabled";
     }
 }
