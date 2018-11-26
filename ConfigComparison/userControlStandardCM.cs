@@ -43,7 +43,7 @@ namespace ConfigComparison
                     foreach (var s in standards)
                     {
                         string productName = s.ProductName;
-                        string filePath = s.FilePath;
+                        string filePath = s.FilePath.Trim();
 
                         if (filePath.EndsWith("(Update 6)"))
                         {
@@ -58,10 +58,10 @@ namespace ConfigComparison
 
                         SiteConfigs site = new SiteConfigs();
                         site.ProductName = s.ProductName;
-                        site.FilePath = filePath;
+                        site.FilePath = filePath.Trim();
                         site.CM_And_Processing = s.CM_And_Processing;
 
-                        var configFileName = s.ConfigFileName;
+                        var configFileName = s.ConfigFileName.Trim();
 
                         if (s.SearchProviderUsed == "Solr is used" && s.ContentManagement == "Enable")
                         {
@@ -77,7 +77,7 @@ namespace ConfigComparison
 
                         }
 
-                        site.ConfigFileName = configFileName;
+                        site.ConfigFileName = configFileName.Trim();
                         site.ContentDelivery = s.ContentDelivery;
                         site.ContentManagement = s.ContentManagement;
                         site.Processing = s.Processing;
@@ -180,6 +180,9 @@ namespace ConfigComparison
                 {
                     string fileName = GetConfigFileFullName(s, siteFolder);
 
+                    //if (fileName.Contains("Sitecore.Commerce.ExperienceAnalytics.config"))
+                    //    Console.Write(fileName);
+
                     string fileToSearch = fileName;
                     if (s.DifferentWithSite)
                     {
@@ -190,6 +193,8 @@ namespace ConfigComparison
                             s.HasMultipleFileInSite = true;
                         }
                         s.FileInSite = string.Join(", ", fileList);
+
+
                     }
                     else
                     {
@@ -273,10 +278,10 @@ namespace ConfigComparison
                 using (var workbook = new XLWorkbook(XLEventTracking.Disabled))
                 {
                     // do stuff with the workbook
-                    workbook.AddWorksheet("SiteConfig");
+                  
                     using (var writer = new CsvWriter(new ExcelSerializer(workbook)))
                     {
-                        writer.WriteRecords(list);
+                        writer.WriteRecords(cmList);
                     }
                     // do other stuff with workbook
                     workbook.SaveAs(fileName);

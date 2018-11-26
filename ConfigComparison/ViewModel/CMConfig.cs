@@ -18,10 +18,7 @@ namespace ConfigComparison.ViewModel
 
         public string ContentManagement { get; set; }
 
-        public bool DifferentWithSite { get; set; }
-
         public string FileInSite { get; set; }
 
-  
     }
 }
