@@ -17,9 +17,9 @@ using ConfigComparison.ViewModel;
 
 namespace ConfigComparison
 {
-    public partial class ControlCMInstance : UserControl
+    public partial class userControlCMInstance : UserControl
     {
-        public ControlCMInstance()
+        public userControlCMInstance()
         {
             InitializeComponent();
 
@@ -35,41 +35,113 @@ namespace ConfigComparison
                 if (string.IsNullOrEmpty(siteFolder))
                     return;
 
+                var cmConfigs = entities.SiteConfigs.Where(s => s.SiteFolder == siteFolder).ToList();
+
+                var files = FileExtension.GetFiles(siteFolder);
+
                 var list = entities.SiteInstanceConfigs.Where(s => s.SiteFolder == siteFolder).ToList();
                 if (list == null || list.Count == 0) //load intial 
                 {
+                    foreach(var file in files)
+                    {
+                        var config = new SiteInstanceConfigs();
+                        config.Role = Constants.CM_ROLE;
+                        config.SiteFolder = siteFolder;
+                        config.ConfigFileFullName = file;
 
+                        config.FilePath = file.Substring(siteFolder.Length, file.LastIndexOf(@"\") + 1 - siteFolder.Length);
+                        config.ConfigFileName = file.Substring(file.LastIndexOf(@"\") + 1);
 
-                    //list.Add(site);
+                        var cmConfig = cmConfigs.Where(c=>c.FileInSite.Equals(file,StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
+                        if(cmConfig != null)
+                        {
+                            config.ProductName = cmConfig.ProductName;
+                        }
 
-                    //var context = new Entities.ConfigData();
-                    //context.SiteConfigs.AddRange(list);
-                    //context.SaveChanges();
+                        if (file.EndsWith(".config"))
+                        {
+                            if(cmConfig != null)
+                            {
+                                config.Type = "Standard Config";
+                            }
+                            else
+                            {
+                                config.Type = "Extended Config";
+                            }
+                        }
+                      
+                        list.Add(config);
+                    }
+
+                    var context = new Entities.ConfigData();
+                    context.SiteInstanceConfigs.AddRange(list);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    if(files.Count() > list.Count())
+                    {
+                        foreach(var fileName in files)
+                        {
+                            var config = entities.SiteInstanceConfigs.Where(s => s.ConfigFileFullName == fileName).FirstOrDefault() ;
+                            if(config == null)
+                            {
+                                using (var context = new Entities.ConfigData())
+                                {
+                                    var newConfig = new SiteInstanceConfigs();
+
+                                    newConfig.Role = Constants.CM_ROLE;
+                                    newConfig.SiteFolder = siteFolder;
+                                    newConfig.ConfigFileFullName = fileName;
+                                    newConfig.FilePath = fileName.Substring(siteFolder.Length);
+                                    newConfig.ConfigFileName = fileName.Substring(fileName.LastIndexOf(@"\"));
+
+                                    
+                                    var cmConfig = cmConfigs.Where(c => c.FilePath == newConfig.FilePath && c.ConfigFileName == newConfig.ConfigFileName).FirstOrDefault();
+
+                                    if (cmConfig != null)
+                                    {
+                                        config.ProductName = cmConfig.ProductName;
+                                    }
+
+                                    if (fileName.EndsWith(".config"))
+                                    {
+                                        if (cmConfig != null)
+                                        {
+                                            config.Type = "Standard Config";
+                                        }
+                                        else
+                                        {
+                                            config.Type = "Custom Config";
+                                        }
+                                    }
+                                    context.SiteInstanceConfigs.Add(newConfig);
+                                    context.SaveChanges();
+                                }
+                            }
+                        }
+                        
+                    }
                 }
                 
             }
 
 
-            this.LoadCMGrid();
+            this.LoadGrid();
         }
 
 
         #region Helper Method 
 
-        private void LoadCMGrid()
+        private void LoadGrid()
         {
-            //this.ColumnContentManagement.Visible = true;
             var siteFolder = this.txtSitePath.Text;
 
             using (var entities = new ConfigData())
             {
-                var data = entities.SiteConfigs.Where(s => s.SiteFolder == siteFolder);
+                var data = entities.SiteInstanceConfigs.Where(s=>s.SiteFolder == siteFolder);
 
-                if (this.checkBoxHideVerified.Checked)
-                {
-                    data = data.Where(s => s.IsVerified == false);
-                }
                 this.dgSiteConfig.DataSource = data.ToList();
 
             }
@@ -186,17 +258,17 @@ namespace ConfigComparison
                 context.SaveChanges();
             }
 
-            this.LoadCMGrid();
+            this.LoadGrid();
         }
 
         private void btnLoadCM_Click(object sender, EventArgs e)
         {
-            this.LoadCMGrid();
+            this.LoadGrid();
         }
 
         private void checkBoxHideVerified_CheckedChanged(object sender, EventArgs e)
         {
-            this.LoadCMGrid();
+            this.LoadGrid();
         }
 
         private void userControlStandardCM_Load(object sender, EventArgs e)

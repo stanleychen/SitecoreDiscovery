@@ -1,6 +1,6 @@
 ﻿namespace ConfigComparison
 {
-    partial class ControlCMInstance
+    partial class userControlCMInstance
     {
         /// <summary> 
         /// Required designer variable.
@@ -42,8 +42,12 @@
             this.btnExport = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.ColumnConfigID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SiteConfigFolder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSiteFolder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSiteName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnConfigFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnConfigFileFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgSiteConfig)).BeginInit();
             this.SuspendLayout();
@@ -64,8 +68,12 @@
             this.dgSiteConfig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgSiteConfig.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnConfigID,
-            this.SiteConfigFolder,
+            this.ColumnSiteFolder,
             this.ColumnSiteName,
+            this.ColumnProductName,
+            this.ColumnFilePath,
+            this.ColumnConfigFileName,
+            this.ColumnType,
             this.ColumnConfigFileFullName});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -177,12 +185,13 @@
             this.ColumnConfigID.Name = "ColumnConfigID";
             this.ColumnConfigID.Visible = false;
             // 
-            // SiteConfigFolder
+            // ColumnSiteFolder
             // 
-            this.SiteConfigFolder.DataPropertyName = "SiteConfigFolder";
-            this.SiteConfigFolder.HeaderText = "SiteConfigFolder";
-            this.SiteConfigFolder.Name = "SiteConfigFolder";
-            this.SiteConfigFolder.Width = 250;
+            this.ColumnSiteFolder.DataPropertyName = "SiteFolder";
+            this.ColumnSiteFolder.HeaderText = "SiteFolder";
+            this.ColumnSiteFolder.Name = "ColumnSiteFolder";
+            this.ColumnSiteFolder.Visible = false;
+            this.ColumnSiteFolder.Width = 250;
             // 
             // ColumnSiteName
             // 
@@ -192,13 +201,40 @@
             this.ColumnSiteName.Visible = false;
             this.ColumnSiteName.Width = 150;
             // 
+            // ColumnProductName
+            // 
+            this.ColumnProductName.DataPropertyName = "ProductName";
+            this.ColumnProductName.HeaderText = "ProductName";
+            this.ColumnProductName.Name = "ColumnProductName";
+            // 
+            // ColumnFilePath
+            // 
+            this.ColumnFilePath.DataPropertyName = "FilePath";
+            this.ColumnFilePath.HeaderText = "FilePath";
+            this.ColumnFilePath.Name = "ColumnFilePath";
+            this.ColumnFilePath.Width = 200;
+            // 
+            // ColumnConfigFileName
+            // 
+            this.ColumnConfigFileName.DataPropertyName = "ConfigFileName";
+            this.ColumnConfigFileName.HeaderText = "ConfigFileName";
+            this.ColumnConfigFileName.Name = "ColumnConfigFileName";
+            this.ColumnConfigFileName.Width = 200;
+            // 
+            // ColumnType
+            // 
+            this.ColumnType.DataPropertyName = "Type";
+            this.ColumnType.HeaderText = "Type";
+            this.ColumnType.Name = "ColumnType";
+            // 
             // ColumnConfigFileFullName
             // 
             this.ColumnConfigFileFullName.DataPropertyName = "ConfigFileFullName";
-            this.ColumnConfigFileFullName.HeaderText = "File FullName";
+            this.ColumnConfigFileFullName.HeaderText = "FullName";
             this.ColumnConfigFileFullName.Name = "ColumnConfigFileFullName";
+            this.ColumnConfigFileFullName.Width = 500;
             // 
-            // ControlCMInstance
+            // userControlCMInstance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -211,7 +247,7 @@
             this.Controls.Add(this.btnLoadCM);
             this.Controls.Add(this.lblSiteConfigPath);
             this.Controls.Add(this.dgSiteConfig);
-            this.Name = "ControlCMInstance";
+            this.Name = "userControlCMInstance";
             this.Size = new System.Drawing.Size(1349, 621);
             this.Load += new System.EventHandler(this.userControlStandardCM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgSiteConfig)).EndInit();
@@ -233,8 +269,12 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnConfigID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SiteConfigFolder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSiteFolder;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSiteName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFilePath;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnConfigFileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnConfigFileFullName;
     }
 }

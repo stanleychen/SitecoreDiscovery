@@ -15,6 +15,10 @@ namespace ConfigComparison.Entities
         public string ConfigFileFullName { get; set; }
         public string SiteFolder { get; set; }
         public string Role { get; set; }
-        
+        public string ProductName { get; set; }
+        public string FilePath { get; set; }
+        public string ConfigFileName { get; set; }
+        public string Type { get; set; }
+
     }
 }

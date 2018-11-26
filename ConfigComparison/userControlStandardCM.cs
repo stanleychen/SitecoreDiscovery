@@ -19,7 +19,7 @@ namespace ConfigComparison
 {
     public partial class userControlStandardCM : UserControl
     {
-        public const string CM_ROLE = "CM";
+       
 
         public userControlStandardCM()
         {
@@ -79,7 +79,7 @@ namespace ConfigComparison
 
                         }
 
-                        site.Role = CM_ROLE;
+                        site.Role = Constants.CM_ROLE;
                         site.ConfigFileName = configFileName.Trim();
                         site.ContentDelivery = s.ContentDelivery;
                         site.ContentManagement = s.ContentManagement;
