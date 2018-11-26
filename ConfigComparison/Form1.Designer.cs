@@ -63,6 +63,7 @@
             this.userControlStandardCM1.Name = "userControlStandardCM1";
             this.userControlStandardCM1.Size = new System.Drawing.Size(1163, 418);
             this.userControlStandardCM1.TabIndex = 0;
+            this.userControlStandardCM1.Load += new System.EventHandler(this.userControlStandardCM1_Load);
             // 
             // Form1
             // 

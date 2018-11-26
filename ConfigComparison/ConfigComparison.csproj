@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Entities\ConfigData.cs" />
     <Compile Include="Entities\SiteConfigs.cs" />
+    <Compile Include="Entities\SiteInstanceConfigs.cs" />
     <Compile Include="Entities\Standard826_827.cs" />
     <Compile Include="FileExtension.cs" />
     <Compile Include="Form1.cs">
@@ -92,6 +93,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ControlCMInstance.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlCMInstance.Designer.cs">
+      <DependentUpon>ControlCMInstance.cs</DependentUpon>
+    </Compile>
     <Compile Include="userControlStandardCM.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -111,6 +118,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ControlCMInstance.resx">
+      <DependentUpon>ControlCMInstance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="userControlStandardCM.resx">
       <DependentUpon>userControlStandardCM.cs</DependentUpon>
     </EmbeddedResource>

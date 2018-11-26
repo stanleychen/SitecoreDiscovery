@@ -14,6 +14,8 @@ namespace ConfigComparison.Entities
         [StringLength(255)]
         public string SiteFolder { get; set; }
 
+        public string Role { get; set; }
+
         [StringLength(255)]
         public string ProductName { get; set; }
 

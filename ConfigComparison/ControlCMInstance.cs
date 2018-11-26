@@ -17,11 +17,9 @@ using ConfigComparison.ViewModel;
 
 namespace ConfigComparison
 {
-    public partial class userControlStandardCM : UserControl
+    public partial class ControlCMInstance : UserControl
     {
-        public const string CM_ROLE = "CM";
-
-        public userControlStandardCM()
+        public ControlCMInstance()
         {
             InitializeComponent();
 
@@ -37,66 +35,19 @@ namespace ConfigComparison
                 if (string.IsNullOrEmpty(siteFolder))
                     return;
 
-                var list = entities.SiteConfigs.Where(s => s.SiteFolder == siteFolder).ToList();
+                var list = entities.SiteInstanceConfigs.Where(s => s.SiteFolder == siteFolder).ToList();
                 if (list == null || list.Count == 0) //load intial 
                 {
-                    var standards = entities.Standard826_827.Where(s => s.FilePath != @"\website\");
 
-                    foreach (var s in standards)
-                    {
-                        string productName = s.ProductName;
-                        string filePath = s.FilePath.Trim();
 
-                        if (filePath.EndsWith("(Update 6)"))
-                        {
-                            s.ProductName = productName + " for Update 6";
-                            filePath = filePath.Substring(0, filePath.LastIndexOf("(Update 6)"));
-                        }
-                        else if (s.FilePath.EndsWith("(Update 7)"))
-                        {
-                            s.ProductName = productName + " for Update 7";
-                            filePath = filePath.Substring(0, filePath.LastIndexOf("(Update 7)"));
-                        }
+                    //list.Add(site);
 
-                        SiteConfigs site = new SiteConfigs();
-                        site.ProductName = s.ProductName;
-                        site.FilePath = filePath.Trim();
-                        site.CM_And_Processing = s.CM_And_Processing;
 
-                        var configFileName = s.ConfigFileName.Trim();
-
-                        if (s.SearchProviderUsed == "Solr is used" && s.ContentManagement == "Enable")
-                        {
-                            if (configFileName.EndsWith(".example"))
-                            {
-                                configFileName = configFileName.Substring(0, configFileName.LastIndexOf(".example"));
-                            }
-
-                            if (configFileName.EndsWith(".disabled"))
-                            {
-                                configFileName = configFileName.Substring(0, configFileName.LastIndexOf(".disabled"));
-                            }
-
-                        }
-
-                        site.Role = CM_ROLE;
-                        site.ConfigFileName = configFileName.Trim();
-                        site.ContentDelivery = s.ContentDelivery;
-                        site.ContentManagement = s.ContentManagement;
-                        site.Processing = s.Processing;
-                        site.Reporting = s.Reporting;
-                        site.SearchProviderUsed = s.SearchProviderUsed;
-                        site.Type = s.Type;
-                        site.SiteFolder = this.txtSitePath.Text;
-
-                        list.Add(site);
-                    }
-
-                    var context = new Entities.ConfigData();
-                    context.SiteConfigs.AddRange(list);
-                    context.SaveChanges();
-
+                    //var context = new Entities.ConfigData();
+                    //context.SiteConfigs.AddRange(list);
+                    //context.SaveChanges();
                 }
+                
             }
 
 
@@ -108,7 +59,7 @@ namespace ConfigComparison
 
         private void LoadCMGrid()
         {
-            this.ColumnContentManagement.Visible = true;
+            //this.ColumnContentManagement.Visible = true;
             var siteFolder = this.txtSitePath.Text;
 
             using (var entities = new ConfigData())

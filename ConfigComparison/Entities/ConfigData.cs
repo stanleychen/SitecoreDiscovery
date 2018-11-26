@@ -16,6 +16,8 @@ namespace ConfigComparison.Entities
 
         public virtual DbSet<SiteConfigs> SiteConfigs { get; set; }
 
+        public virtual DbSet<SiteInstanceConfigs> SiteInstanceConfigs { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }
