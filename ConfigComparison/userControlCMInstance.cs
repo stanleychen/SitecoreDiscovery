@@ -312,24 +312,25 @@ namespace ConfigComparison
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            var list = this.dgSiteConfig.DataSource as List<SiteConfigs>;
+            var list = this.dgSiteConfig.DataSource as List<SiteInstanceConfigs>;
             if (list == null)
                 return;
 
             if(saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                var cmList = new List<CMConfig>();
+                var cmList = new List<SiteInstanceView>();
 
                 foreach (var s in list)
                 {
-                    cmList.Add(new CMConfig()
+                    cmList.Add(new SiteInstanceView()
                     {
-                        ProductName = s.ProductName,
-                        ContentManagement = s.ContentManagement,
+                        ConfigFileFullName = s.ConfigFileFullName,
                         ConfigFileName = s.ConfigFileName,
-                        FileInSite = s.FileInSite,
                         FilePath = s.FilePath,
-                        SiteFolder = s.SiteFolder
+                        Type = s.Type,
+                        ProductName = s.ProductName,
+                        ConfigID = s.ConfigID
+
                     });
                 }
 

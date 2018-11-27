@@ -20,9 +20,12 @@ namespace ConfigComparison
                 foreach(var config in configs)
                 {
                     SiteInstanceView view = new SiteInstanceView();
-                    view.Role = Constants.CM_ROLE;
-                    view.SiteFolder = config.SiteFolder;
+
                     view.ConfigFileFullName = config.ConfigFileFullName;
+                    view.ConfigFileName = config.ConfigFileName;
+                    view.FilePath = config.FilePath;
+                    view.Type = config.Type;
+                    view.ProductName = config.ProductName;
                     view.ConfigID = config.ConfigID;
 
                     list.Add(view);
