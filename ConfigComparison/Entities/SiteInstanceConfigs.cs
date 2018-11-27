@@ -19,6 +19,6 @@ namespace ConfigComparison.Entities
         public string FilePath { get; set; }
         public string ConfigFileName { get; set; }
         public string Type { get; set; }
-
+        public bool? IsVerified { get; set; }
     }
 }

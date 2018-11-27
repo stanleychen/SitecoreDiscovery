@@ -155,7 +155,25 @@ namespace ConfigComparison
                     data = data.Where(d => d.Type != Constants.DISABLED);
                 }
 
+                if (this.checkBoxHideVerified.Checked)
+                {
+                    data = data.Where(d => d.IsVerified == false || d.IsVerified == null);
+                }
+
                 this.dgSiteConfig.DataSource = data.ToList();
+
+                foreach(DataGridViewRow row in this.dgSiteConfig.Rows)
+                {
+                    var config = row.DataBoundItem as SiteInstanceConfigs;
+                    if(config != null)
+                    {
+                        if(config.Type == "Standard Config")
+                        {
+                            row.DefaultCellStyle.BackColor = Color.Gainsboro;
+                        }
+                    }
+                 
+                }
 
             }
         }
@@ -252,7 +270,7 @@ namespace ConfigComparison
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var list = this.dgSiteConfig.DataSource as List<SiteConfigs>;
+            var list = this.dgSiteConfig.DataSource as List<SiteInstanceConfigs>;
 
             if (list == null)
                 return;
@@ -261,10 +279,13 @@ namespace ConfigComparison
             {
                 foreach (var row in list)
                 {
-                    var config = context.SiteConfigs.Where(s => s.ID == row.ID).FirstOrDefault();
+                    var config = context.SiteInstanceConfigs.Where(s => s.ConfigID == row.ConfigID).FirstOrDefault();
 
                     if (config != null)
+                    {
                         config.IsVerified = row.IsVerified;
+                        config.ProductName = row.ProductName;
+                    }
 
                 }
 
